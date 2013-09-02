@@ -51,10 +51,8 @@ public class Sieve(){
 	Shows the set of sexy pairs
 	*/
 	public void showPrimes(){
-		int count;
-		System.out.println("Please enter a lower boundary and an upper boundary and I will print all of the sexy prime pairs between those boundaries.");
-		getBoundaries();
 		System.out.printf("Here are all of the sexy prime pairs in the range %d to %d \n", lower, upper);
+		int count;
 		for (i = lower; i <= upper; i++) {
 			if (primes[i] == true && primes[i-6] == true) {
 				System.out.printf("%d and %d \n", i, (i-6));
@@ -68,6 +66,7 @@ public class Sieve(){
 	gets lower and upper boundaries
 	*/
 	public void getBoundaries(){
+		System.out.println("Please enter a lower boundary and an upper boundary and I will print all of the sexy prime pairs between those boundaries.");
 		while (!(lower <= upper)) {
 			while (!(upper < 1) || !(upper > 50000)) {
 				System.out.print("Please enter the upper boundary (must be between 1 and 50000):");
