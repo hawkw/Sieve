@@ -15,40 +15,23 @@ public class NullPointerException_Sieve {
 		primes[1] = false;
 		upper = MAX_NUM;
 		lower = 1;
-		for (int i = 1; i <= primes.length; i++){
-			primes[1] = true;
+		for (int i = 1; i < primes.length; i++){
+			primes[i] = true;
 		}
 	}
 	
 	/**
 	Implements the Sieve of Eratosthenes algorithm
 	*/
-		public void processSieve(){
-
-		int i = 1;
-		
-
-		    for (int x = 2; x <= Math.sqrt(upper); x++)
-			{
-			i++;
-			if (x % i == 0) {
-			primes[x] = false;
+	public void processSieve(){
+		primes[1] = false;						// 1 is not a prime number
+		for(int p = 2; p < 50000;) {					
+			for(int count = 2; count * p < 50000; count++) {			
+				primes[count * p] = false;
 			}
-			    if (primes[x] = true)
-				{
-				    for (int y = x + 1; y <= Math.sqrt(upper); y++)
-					{
-
-					    if (y % x == 0) 
-						{
-						    primes[y] = false;
-						}
-					}
-				}
-			}
-
-		
+			while(p < 50000 && primes[++p] == false);	// fast forward to the next prime number
 		}
+	}
 	
 	/**
 	Shows the set of sexy pairs
@@ -71,16 +54,24 @@ public class NullPointerException_Sieve {
 	public void getBoundaries() {
 		System.out.println("Please enter a lower boundary and an upper boundary and I will print all of the sexy prime pairs between those boundaries.");
 		do {
-			while (!(upper < 1) || !(upper > 50000)) {
+			while (!(1 < upper && upper < 50000)) {
 				System.out.print("Please enter the upper boundary (must be between 1 and 50000):");
-				upper = scan.nextInt();
-				System.out.println();
+				try {
+					upper = Integer.parseInt(scan.nextLine());
+				}
+				catch (Exception e) {
+					System.out.println("NaN");
+				}
 			}
-			while (!(lower < 1) || !(lower < 50000)) {
-				System.out.print("Please enter the upper boundary (must be between 1 and 50000):");
-				lower = scan.nextInt();
-				System.out.println();
-			}
+			while (!(1 < lower && lower < 50000)) {
+				System.out.print("Please enter the lower boundary (must be between 1 and " + upper + "):");
+				try {
+					lower = Integer.parseInt(scan.nextLine());
+				}
+				catch (Exception e) {
+					System.out.println("NaN");
+				}
+			} 
 		} while (!(lower <= upper));
 	}
 }
