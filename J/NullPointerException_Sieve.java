@@ -13,8 +13,6 @@ public class Sieve(){
 		Scanner scan = new Scanner(System.in);
 		primes[0] = false;
 		primes[1] = false;
-		lower = 1;
-		upper = MAX_NUM;
 		for (i = 1; i >= primes.length(); i++){
 			primes[1] = true;
 		}
@@ -30,26 +28,30 @@ public class Sieve(){
 		Shows the set of sexy pairs
 		*/
 	public void showPrimes(){
-		//TODO: WRITE ME
+		System.out.printf("Here are all of the sexy prime pairs in the range %d to %d \n", lower, upper);
+		
 	}
 	
 	/**
 		gets lower and upper boundaries
 		*/
 	public void getBoundaries(){
-		System.out.println("Please enter the upper bound (between 1 and 50000).");
-		int temp = scan.getNextInt(); // u will temporarily hold values while we check them
-		if (temp < 1 || temp > 50000){
-			System.out.println("Sorry, the upper bound must be between 1 and 50000.")
-		} else {
-			upper = temp;
+		while (upper < 1 || upper < 50000) {
+			System.out.print("Please enter the upper bound (between 1 and 50000):");
+			upper = scan.getNextInt();
 		}
-		System.out.println("Please enter the lower bound (between 1 and the upper bound).");
-		temp = scan.getNextInt();
-		if (temp < 1 || temp > upper){
-			System.out.println("Sorry, the upper bound must be between 1 and the upper bound.")
-		} else {
-			lower = temp;
+		System.out.print("\nPlease enter the lower bound (between 1 and the upper bound):");
+		lower = scan.getNextInt();
+		if (lower > upper{
+			System.out.print("\nSorry, the upper bound must be between 1 and the upper bound:");
+			System.out.print("\nPlease enter the upper bound (between 1 and 50000):");
+			upper = scan.getNextInt();
+			System.out.print("\nPlease enter the lower bound (between 1 and the upper bound):");
+			lower = scan.getNextInt();
+		} else if (lower < 1){
+			System.out.print("\nSorry, the upper bound must be between 1 and the upper bound:");
+			System.out.print("\nPlease enter the lower bound (between 1 and the upper bound):");
+			lower = scan.getNextInt();	
 		}
 	}
 }
