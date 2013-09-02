@@ -13,7 +13,7 @@ public class Sieve(){
 		Scanner scan = new Scanner(System.in);
 		primes[0] = false;
 		primes[1] = false;
-		for (i = 1; i >= primes.length(); i++){
+		for (i = 1; i <= primes.length(); i++){
 			primes[1] = true;
 		}
 	
@@ -28,8 +28,15 @@ public class Sieve(){
 		Shows the set of sexy pairs
 		*/
 	public void showPrimes(){
+		int count;
 		System.out.printf("Here are all of the sexy prime pairs in the range %d to %d \n", lower, upper);
-		
+		for (i = lower; i <= upper; i++) {
+			if (primes[i] == true && primes[i-6] == true) {
+				System.out.printf("%d and %d \n", i, (i-6));
+				count++;
+			}
+		}
+		System.out.printf("There were %d sexy prime pairs displayed between %d and %d.\n", count, lower, upper);
 	}
 	
 	/**
