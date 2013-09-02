@@ -7,8 +7,8 @@ public class Sieve(){
 	private int upper, lower;
 	
 	/**
-		Constructor for Sieve
-		*/
+	Constructor for Sieve
+	*/
 	public NullPointerException_Sieve() {
 		Scanner scan = new Scanner(System.in);
 		primes[0] = false;
@@ -17,7 +17,7 @@ public class Sieve(){
 			primes[1] = true;
 		}
 	
-	/**
+		/**
 		Implements the Sieve of Eratosthenes algorithm
 		*/
 		public void processSieve(){
@@ -48,8 +48,8 @@ public class Sieve(){
 		}
 	
 	/**
-		Shows the set of sexy pairs
-		*/
+	Shows the set of sexy pairs
+	*/
 	public void showPrimes(){
 		int count;
 		System.out.println("Please enter a lower boundary and an upper boundary and I will print all of the sexy prime pairs between those boundaries.");
@@ -65,8 +65,8 @@ public class Sieve(){
 	}
 	
 	/**
-		gets lower and upper boundaries
-		*/
+	gets lower and upper boundaries
+	*/
 	public void getBoundaries(){
 		while (!(lower <= upper)) {
 			while (!(upper < 1) || !(upper > 50000)) {
