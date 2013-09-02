@@ -20,9 +20,32 @@ public class Sieve(){
 	/**
 		Implements the Sieve of Eratosthenes algorithm
 		*/
-	public void processSieve(){
-		// TODO: write me
-	}
+		public void processSieve(){
+
+		int i = 1;
+		
+
+		    for (int x = 2; x <= Math.sqrt(upper); x++)
+			{
+			i++;
+			if (x % i == 0) {
+			primes[x] = false;
+			}
+			    if (primes[x] = true)
+				{
+				    for (int y = x + 1; y <= Math.sqrt(upper); y++)
+					{
+
+					    if (y % x == 0) 
+						{
+						    primes[y] = false;
+						}
+					}
+				}
+			}
+
+		
+		}
 	
 	/**
 		Shows the set of sexy pairs
