@@ -42,7 +42,7 @@ void processSieve() {
 
     //iterate through every element
     for (i = p; p < ARRAYSIZE; i++){
-        //if the element isn't a non-prime, cross off its multiples
+        //if the element is prime, cross off its multiples
         if (primes[i]){
             for (j = i + p; j < ARRAYSIZE; j = j + p){
                 primes[j] = 0;
