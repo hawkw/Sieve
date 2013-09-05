@@ -15,18 +15,21 @@ Bounds b = {0,0};
 void getBoundaries() {
     printf("Enter the lower bound: ");
     scanf("%d", &b.lowBound);
-    boundSizeCheck(b.lowBound);
     printf("Enter he upper bound: ");
     scanf("%d", &b.highBound);
-    boundSizeCheck(b.highBound);
+    
+    if (boundSizeCheck(b.lowBound)) || (boundSizeCheck(b.highBound)){
+        printf("Please enter the boundaries again.")
+        getBoundaries();
+    }
 }
 
 
 //Make sure input is of reasonable size
-int boundSizeCheck(int low) {
-    if (b.lowBound > 50000 || b.lowbound < 1){
-        printf("Inputs must be below 50000 and above 0.");
-        getBoundaries();
+int boundSizeCheck(int bound) {
+    if (bound > 50000 || bound < 1){
+        printf("Inputs must be below 50000 and above 0.\n");
+        return 1;
     }
     else return 0;
 }
