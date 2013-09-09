@@ -1,10 +1,10 @@
 #include <stdio.h>
+#define ARRAYSIZE 50001
 typedef struct Bounds Bounds;
 
-//should move function declarations to a .h file
 void processSieve();
-void getboundaries();
-int boundSizeCheck(int endpoint);
+void getBoundaries();
+int boundSizeCheck(int bound);
 void showPrimes();
 
 struct Bounds {
@@ -12,7 +12,14 @@ struct Bounds {
     int highBound;
 };
 
+int primes[ARRAYSIZE];
 Bounds b = {0,0};
+
+int main(){
+    getBoundaries();
+    processSieve();
+    showPrimes();
+}
 
 void getBoundaries() {
     printf("Enter the lower bound: ");
@@ -20,8 +27,8 @@ void getBoundaries() {
     printf("Enter he upper bound: ");
     scanf("%d", &b.highBound);
     
-    if (boundSizeCheck(b.lowBound)) || (boundSizeCheck(b.highBound)){
-        printf("Please enter the boundaries again.")
+    if (boundSizeCheck(b.lowBound) || boundSizeCheck(b.highBound)){
+        printf("Please enter the boundaries again.\n");
         getBoundaries();
     }
 }
@@ -31,17 +38,17 @@ void getBoundaries() {
 int boundSizeCheck(int bound) {
     if (bound > 50000 || bound < 1){
         printf("Inputs must be below 50000 and above 0.\n");
-        return 1;
+        return -1;
     }
     else return 0;
 }
 
 void showPrimes(){
     int i;
-    for (i = 0; i < ARRAYSIZE; i++) {
-        if (i + 6 < ARRAYSIZE)
-            if (primes[i + 6])
-                printf("%d\n%d\n", primes[i], primes[i + 6]);
+    for (i = b.lowBound; i < b.highBound; i++) {
+        if (i + 6 < b.highBound)
+            if (primes[i] && primes[i + 6])
+                printf("%d %d\n", primes[i], primes[i + 6]);
     }
 
 }
