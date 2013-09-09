@@ -16,21 +16,10 @@ int primes[ARRAYSIZE];
 Bounds b = {0,0};
 
 int main(){
-    getBoundaries();
-    processSieve();
-    showPrimes();
-}
-
-void getBoundaries() {
-    printf("Enter the lower bound: ");
-    scanf("%d", &b.lowBound);
-    printf("Enter the upper bound: ");
-    scanf("%d", &b.highBound);
-    
-    if (boundSizeCheck(b.lowBound) || boundSizeCheck(b.highBound)){
-        printf("Please enter the boundaries again.\n");
-        getBoundaries();
-    }
+	processSieve();
+	showPrimes();
+	getBoundaries();
+	showPrimes();
 }
 
 void getBoundaries() {
@@ -59,13 +48,6 @@ void getBoundaries() {
     }
 }
         
-//Make sure input is of reasonable size
-int boundSizeCheck(int bound) {
-    if (bound > 50000 || bound < 1){
-        printf("Inputs must be below 50000 and above 0.\n");
-        return -1;
-    }
-}
 
 void showPrimes(){
     int i;
