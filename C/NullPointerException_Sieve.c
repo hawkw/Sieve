@@ -20,6 +20,7 @@ int main(){
 	showPrimes();
 	getBoundaries();
 	showPrimes();
+	return 0;
 }
 
 void getBoundaries() {
