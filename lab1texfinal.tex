@@ -1,0 +1,241 @@
+%\documentclass[10pt, conference, compsocconf]{IEEEtran}
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{soul}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+
+\pdfinfo{%
+  /Title    (Lab 1: Sieve of Eratosthenes)
+  /Author   (Max Clive, Hawk Weisman, Alden Page, Ryan Cambier)
+  /Subject  (CS 220 Programming Languages Lab)
+  /Keywords (Programming languages)
+}
+
+%\pdfpagewidth 8.5in %
+%\pdfpageheight 11.0in %
+
+%\addtolength{\oddsidemargin}{-.50in} %.875in
+%\addtolength{\evensidemargin}{-.50in} %.875in
+%\addtolength{\textwidth}{1.in} %1.75in
+%\addtolength{\topmargin}{-.875in} %.875in
+%\addtolength{\textheight}{1.in} %1.75in
+
+%opening
+
+\begin{titlepage}
+
+\title{Computer Science 220 \\[20pt]
+Programming Languages Concepts\\ [20pt]
+\textbf{Lab Assignment 1: Sieve of Eratosthenes}}
+\author{Group NullPointerException: \\ Max Clive, Hawk Weisman, Alden Page, Ryan Cambier}
+\date{September 13, 2013 }
+
+
+\end{titlepage}
+
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Comparing Java and C}
+
+There are many similarities and differences between the two different implementations of the Sieve of Eratosthenes. Both use the same algorithm to find the prime numbers and eliminate the non-primes along with their multiples, but the details of the implementation of that algorithm differ in some ways.
+
+\section{Java Implementation of Sieve}
+
+\begin{lstlisting}
+ 
+import java.util.Scanner; 
+ 
+public class NullPointerException_Sieve { 
+	 
+	private final int MAX_NUM = 50000; 
+	private boolean[] primes = new boolean[50001]; 
+	private int upper, lower; 
+	Scanner scan = new Scanner(System.in); 
+	 
+	/** 
+	Constructor for Sieve 
+	*/ 
+	public NullPointerException_Sieve() { 
+		primes[0] = false; 
+		primes[1] = false; 
+		upper = MAX_NUM; 
+		lower = 1; 
+		for (int i = 1; i < primes.length; i++){ 
+			primes[i] = true; 
+		} 
+	} 
+	 
+	/** 
+	Implements the Sieve of Eratosthenes algorithm 
+	*/ 
+	public void processSieve(){ 
+		primes[1] = false;						// 1 is not a prime number 
+		for(int p = 2; p < 50000;) {					 
+			for(int count = 2; count * p < 50000; count++) {			 
+				primes[count * p] = false; 
+			} 
+			while(p < 50000 && primes[++p] == false);	// fast forward to the next prime number 
+		} 
+	} 
+	 
+	/** 
+	Shows the set of sexy pairs 
+	*/ 
+	public void showPrimes() { 
+		System.out.printf("Here are all of the sexy prime pairs in the range %d to %d \n", lower, upper); 
+		int count = 0; 
+		for (int i = lower; i <= upper; i++) { 
+			if (primes[i] == true && i-6 > 0 && primes[i-6] == true) { 
+				System.out.printf("%d and %d \n", i, (i-6)); 
+				count++; 
+			} 
+		} 
+		System.out.printf("There were %d sexy prime pairs displayed between %d and %d.\n", count, lower, upper); 
+	} 
+	 
+	/** 
+	gets lower and upper boundaries 
+	*/ 
+	public void getBoundaries() { 
+		System.out.println("Please enter a lower boundary and an upper boundary and I will print all of the sexy prime pairs between those boundaries."); 
+		do { 
+			while (!(1 < upper && upper < 50000)) { 
+				System.out.print("Please enter the upper boundary (must be between 1 and 50000):"); 
+				try { 
+					upper = Integer.parseInt(scan.nextLine()); 
+				} 
+				catch (Exception e) { 
+					System.out.println("NaN"); 
+				} 
+			} 
+			while (!(1 < lower && lower < 50000)) { 
+				System.out.print("Please enter the lower boundary (must be between 1 and " + upper + "):"); 
+				try { 
+					lower = Integer.parseInt(scan.nextLine()); 
+				} 
+				catch (Exception e) { 
+					System.out.println("NaN"); 
+				} 
+			}  
+		} while (!(lower <= upper)); 
+	} 
+}
+\end{lstlisting}
+
+
+\section{Java Test Program}
+
+\begin{lstlisting}
+
+public class NullPointerException_SieveTest { 
+	public static void main(String argv[]) { 
+	NullPointerException_Sieve steve = new NullPointerException_Sieve(); 
+	steve.processSieve(); 
+	steve.showPrimes(); 
+	steve.getBoundaries(); 
+	steve.showPrimes(); 
+	} 
+}
+
+\end{lstlisting}
+
+
+\section{C Implementation of Sieve}
+
+\begin{lstlisting}
+
+#include <stdio.h> 
+typedef struct Bounds Bounds; 
+ 
+//should move function declarations to a .h file 
+void processSieve(); 
+int boundSizeCheck(int endpoint); 
+ 
+struct Bounds { 
+    int lowBound; 
+    int highBound; 
+}; 
+ 
+Bounds b = {0,0}; 
+ 
+void getBoundaries() { 
+    printf("Enter the lower bound: "); 
+    scanf("%d", &b.lowBound); 
+    printf("Enter he upper bound: "); 
+    scanf("%d", &b.highBound); 
+     
+    if (boundSizeCheck(b.lowBound)) || (boundSizeCheck(b.highBound)){ 
+        printf("Please enter the boundaries again.") 
+        getBoundaries(); 
+    } 
+} 
+ 
+ 
+//Make sure input is of reasonable size 
+int boundSizeCheck(int bound) { 
+    if (bound > 50000 || bound < 1){ 
+        printf("Inputs must be below 50000 and above 0.\n"); 
+        return 1; 
+    } 
+    else return 0; 
+} 
+ 
+void processSieve() { 
+    //p is the current prime number being evaluated 
+    int p = 2; 
+    int i, j; 
+    //Populate our array with numbers 
+    for (i = 0; i < ARRAYSIZE; i++){ 
+        primes[i] = i;  
+    } 
+ 
+    //iterate through every element 
+    for (i = p; p < ARRAYSIZE; i++){ 
+        //if the element is prime, cross off its multiples 
+        if (primes[i]){ 
+            for (j = i + p; j < ARRAYSIZE; j = j + p){ 
+                primes[j] = 0; 
+            } 
+        } 
+        p++; 
+    } 
+}
+
+\end{lstlisting}
+
+% begin typing
+
+\end{document}
