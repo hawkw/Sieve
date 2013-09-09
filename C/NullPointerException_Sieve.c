@@ -41,7 +41,7 @@ void showPrimes(){
     for (i = 0; i < ARRAYSIZE; i++) {
         if (i + 6 < ARRAYSIZE)
             if (primes[i + 6])
-                printf("%d\n%d", primes[i], primes[i + 6]);
+                printf("%d\n%d\n", primes[i], primes[i + 6]);
     }
 
 }
