@@ -24,7 +24,6 @@ int main(){
 }
 
 void getBoundaries() {
-    int temp;
     while(b.lowBound >= b.highBound) {
         //make everything invalid to start
         b.lowBound = -1;
@@ -55,7 +54,6 @@ void showPrimes(){
     for (i = b.lowBound; i < b.highBound; i++) {
         if (i + 6 < b.highBound)
             if (primes[i] && primes[i + 6]){
-                printf("%d %d\n", primes[i], primes[i + 6]);
                 printf("%d and %d\n", primes[i], primes[i + 6]);
             }
     }
