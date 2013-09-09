@@ -24,7 +24,7 @@ int main(){
 void getBoundaries() {
     printf("Enter the lower bound: ");
     scanf("%d", &b.lowBound);
-    printf("Enter he upper bound: ");
+    printf("Enter the upper bound: ");
     scanf("%d", &b.highBound);
     
     if (boundSizeCheck(b.lowBound) || boundSizeCheck(b.highBound)){
