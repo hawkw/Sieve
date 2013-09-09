@@ -19,8 +19,6 @@ int main(){
     getBoundaries();
     processSieve();
     showPrimes();
-<<<<<<< HEAD
-=======
 }
 
 void getBoundaries() {
@@ -33,13 +31,10 @@ void getBoundaries() {
         printf("Please enter the boundaries again.\n");
         getBoundaries();
     }
->>>>>>> e8c992bec65a8befb3ba7acfe77fd2055b65efab
 }
 
 void getBoundaries() {
     int temp;
-
-<<<<<<< HEAD
     while(b.lowBound >= b.highBound) {
         //make everything invalid to start
         b.lowBound = -1;
@@ -61,13 +56,12 @@ void getBoundaries() {
         else if(b.lowBound == b.highBound) {
             printf("Your upper boundary and lower boundary cannot be equal.\n");
         }
-=======
+        
 //Make sure input is of reasonable size
 int boundSizeCheck(int bound) {
     if (bound > 50000 || bound < 1){
         printf("Inputs must be below 50000 and above 0.\n");
         return -1;
->>>>>>> e8c992bec65a8befb3ba7acfe77fd2055b65efab
     }
 }
 
@@ -76,11 +70,8 @@ void showPrimes(){
     for (i = b.lowBound; i < b.highBound; i++) {
         if (i + 6 < b.highBound)
             if (primes[i] && primes[i + 6])
-<<<<<<< HEAD
                 printf("%d %d\n", primes[i], primes[i + 6]);
-=======
                 printf("%d and %d\n", primes[i], primes[i + 6]);
->>>>>>> e8c992bec65a8befb3ba7acfe77fd2055b65efab
     }
 
 }
