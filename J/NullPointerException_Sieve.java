@@ -71,6 +71,9 @@ public class NullPointerException_Sieve {
 				catch (Exception e) {
 					System.out.println("NaN");
 				}
+				
+				if (upper > lower)
+					System.out.println("Your upper boundary cannot be smaller than your lower boundary.");
 			} 
 		} while (!(lower <= upper));
 	}
