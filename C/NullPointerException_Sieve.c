@@ -1,10 +1,10 @@
 #include <stdio.h>
+#define ARRAYSIZE 50001
 typedef struct Bounds Bounds;
 
-//should move function declarations to a .h file
 void processSieve();
-void getboundaries();
-int boundSizeCheck(int endpoint);
+void getBoundaries();
+int boundSizeCheck(int bound);
 void showPrimes();
 
 struct Bounds {
@@ -12,36 +12,48 @@ struct Bounds {
     int highBound;
 };
 
+int primes[ARRAYSIZE];
 Bounds b = {0,0};
 
-void getBoundaries() {
-    printf("Enter the lower bound: ");
-    scanf("%d", &b.lowBound);
-    printf("Enter he upper bound: ");
-    scanf("%d", &b.highBound);
-    
-    if (boundSizeCheck(b.lowBound)) || (boundSizeCheck(b.highBound)){
-        printf("Please enter the boundaries again.")
-        getBoundaries();
-    }
+int main(){
+    getBoundaries();
+    processSieve();
+    showPrimes();
 }
 
+void getBoundaries() {
+    int temp;
 
-//Make sure input is of reasonable size
-int boundSizeCheck(int bound) {
-    if (bound > 50000 || bound < 1){
-        printf("Inputs must be below 50000 and above 0.\n");
-        return 1;
+    while(b.lowBound >= b.highBound) {
+        //make everything invalid to start
+        b.lowBound = -1;
+        b.highBound = -1;
+        
+        while(b.lowBound < 1 || b.lowBound > 50000) {
+            printf("Enter the lower boundary (between 1 and 50000): ");
+            scanf("%d", &b.lowBound);
+        }
+        
+        while(b.highBound < 1 || b.highBound > 50000) {
+            printf("Enter he upper boundary (between 1 and 50000: ");
+            scanf("%d", &b.highBound);
+        }
+        
+        if (b.lowBound > b.highBound) {
+            printf("Your upper boundary cannot be smaller than your lower boundary.\n");
+        }
+        else if(b.lowBound == b.highBound) {
+            printf("Your upper boundary and lower boundary cannot be equal.\n");
+        }
     }
-    else return 0;
 }
 
 void showPrimes(){
     int i;
-    for (i = 0; i < ARRAYSIZE; i++) {
-        if (i + 6 < ARRAYSIZE)
-            if (primes[i + 6])
-                printf("%d\n%d\n", primes[i], primes[i + 6]);
+    for (i = b.lowBound; i < b.highBound; i++) {
+        if (i + 6 < b.highBound)
+            if (primes[i] && primes[i + 6])
+                printf("%d %d\n", primes[i], primes[i + 6]);
     }
 
 }
