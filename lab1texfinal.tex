@@ -70,8 +70,8 @@ Programming Languages Concepts\\ [20pt]
 
 \section{Comparing Java and C}
 
-	Overall, the implementations of the algorithm didn't differ much between either language. The most notable difference is the length of the programs – C's minimal syntax allows for a more concise program, although it comes at the cost of less built-in error handling and more difficult debugging. Theoretically, the C version of the same program should run at least an order of magnitude faster than the Java version, but speed isn't terribly relevant in a project of this nature and scale.
-	With knowledge of C's “gotchas” (e.g. accessing outside of the boundaries of arrays, dereferencing null pointers, various other pointer-related disasters,) it is 
+		Overall, the implementations of the algorithm didn't differ much between either language. The most notable difference is the length of the programs – C's minimal syntax allows for a more concise program, although it comes at the cost of less built-in error handling and more difficult debugging. Theoretically, the C version of the same program should run significantly faster, but speed isn't terribly relevant in a project of this nature and scale.
+	With knowledge of C's “gotchas” (e.g. accessing outside of the boundaries of arrays, dereferencing null pointers, various other pointer-related disasters,) it is possible to avoid some of the dangers that C is infamous for.
 	In contrast, while Java's design attempts to force the user to consider every possible contingency through error handling and use approved design patterns, this robustness and reliability comes at the cost of much more cluttered code. C allows the developer to just “get it done,” trusting he or she to insert as much complexity as is necessary, no matter what the consequences that that may entail.
 
 \section{Java Implementation of Sieve}
