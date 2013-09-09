@@ -3,7 +3,9 @@ typedef struct Bounds Bounds;
 
 //should move function declarations to a .h file
 void processSieve();
+void getboundaries();
 int boundSizeCheck(int endpoint);
+void showPrimes();
 
 struct Bounds {
     int lowBound;
@@ -32,6 +34,16 @@ int boundSizeCheck(int bound) {
         return 1;
     }
     else return 0;
+}
+
+void showPrimes(){
+    int i;
+    for (i = 0; i < ARRAYSIZE; i++) {
+        if (i + 6 < ARRAYSIZE)
+            if (primes[i + 6])
+                printf("%d\n%d", primes[i], primes[i + 6]);
+    }
+
 }
 
 void processSieve() {
