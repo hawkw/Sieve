@@ -53,9 +53,10 @@ void showPrimes(){
     int i;
     for (i = b.lowBound; i < b.highBound; i++) {
         if (i + 6 < b.highBound)
-            if (primes[i] && primes[i + 6])
+            if (primes[i] && primes[i + 6]){
                 printf("%d %d\n", primes[i], primes[i + 6]);
                 printf("%d and %d\n", primes[i], primes[i + 6]);
+            }
     }
 
 }
