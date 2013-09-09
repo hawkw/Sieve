@@ -56,6 +56,8 @@ void getBoundaries() {
         else if(b.lowBound == b.highBound) {
             printf("Your upper boundary and lower boundary cannot be equal.\n");
         }
+    }
+}
         
 //Make sure input is of reasonable size
 int boundSizeCheck(int bound) {
